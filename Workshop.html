@@ -1,0 +1,54 @@
+ <!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>Workshop: My Code Editor - ภูมิฉัตร</title>
+    <style>
+        body { font-family: sans-serif; margin: 0; display: flex; flex-direction: column; height: 100vh; background: #222; color: white; }
+        .header { padding: 10px 20px; background: #333; display: flex; justify-content: space-between; align-items: center; }
+        .container { display: flex; flex: 1; border-top: 2px solid #444; }
+        textarea { width: 50%; height: 100%; background: #1e1e1e; color: #00ff00; border: none; padding: 15px; font-family: monospace; font-size: 16px; outline: none; resize: none; }
+        iframe { width: 50%; height: 100%; background: white; border: none; }
+        .label { background: #444; padding: 5px 10px; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div><strong>Workshop:</strong> Code Editor</div>
+        <div>ผู้จัดทำ: ภูมิฉัตร ปานทุ่ง (Soft Skill: หน้าตาดี)</div>
+    </div>
+
+    <div class="label">พิมพ์โค้ด JavaScript หรือ HTML ที่นี่เพื่อดูผลลัพธ์:</div>
+    
+    <div class="container">
+        <textarea id="code-input" placeholder="ลองใส่ <h1>สวัสดี</h1> หรือ <script>alert('Hello')</script>">
+<h1>ชื่อ: ภูมิฉัตร ปานทุ่ง</h1>
+<p>Soft Skill: หน้าตาดี</p>
+
+<script>
+  console.log("ระบบพร้อมทำงาน!");
+</script>
+        </textarea>
+
+        <iframe id="result-preview"></iframe>
+    </div>
+
+    <script>
+        const input = document.getElementById('code-input');
+        const output = document.getElementById('result-preview');
+
+        function update() {
+            const preview = output.contentDocument || output.contentWindow.document;
+            preview.open();
+            preview.write(input.value);
+            preview.close();
+        }
+
+        // ให้โค้ดทำงานทันทีที่พิมพ์
+        input.addEventListener('keyup', update);
+        // รันครั้งแรกตอนโหลดหน้าเว็บ
+        update();
+    </script>
+</body>
+</html>
